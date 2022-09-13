@@ -10,8 +10,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use(bodyParser.urlencoded());
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -25,7 +23,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/*', (req, res) => {
   // res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  res.send('Server connection established');
+  res.send(`server connected at ${port}`);
 });
 
 app.post('/create-teacher-pdf', async (req, res, next) => {
