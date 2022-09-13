@@ -51,7 +51,7 @@ async function createTeacherPDF(name) {
   const queryParams = [];
   queryParams.push(encodeURIComponent('name') + '=' + encodeURIComponent(name));
   const queryString = queryParams.join('&');
-  const browser = await puppeteer.launch({ ignoreDefaultArgs: ['--disable-extensions'] });
+  const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
   console.log(queryString);
   await page.goto("https://dvc-2022.herokuapp.com/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
@@ -67,7 +67,7 @@ async function createKlassPdf(years, city, school, klass) {
   queryParams.push(encodeURIComponent('school') + '=' + encodeURIComponent(school));
   queryParams.push(encodeURIComponent('klass') + '=' + encodeURIComponent(klass));
   const queryString = queryParams.join('&');
-  const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+  const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
   await page.goto("https://dvc-2022.herokuapp.com/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
   await page.addStyleTag({ path: './landscape.css' });
