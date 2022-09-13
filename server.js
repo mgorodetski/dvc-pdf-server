@@ -1,5 +1,5 @@
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-// app.use(cors());
+app.use(cors());
 
 // app.use(express.static(path.resolve(__dirname, "./client/build")));
 
