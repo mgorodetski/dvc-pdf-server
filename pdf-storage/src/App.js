@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import KlassPdf from './klassPdf/KlassPdf';
-import TeacherPdf from './teacherPdf/TeacherPdf';
+import KlassPdf from './components/klassPdf/KlassPdf';
+import TeacherPdf from './components/teacherPdf/TeacherPdf';
 
 function App() {
   return (

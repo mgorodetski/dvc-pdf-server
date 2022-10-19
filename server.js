@@ -4,6 +4,8 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 
+const publicPath = path.join(__dirname, './pdf-storage/build');
+
 const port = process.env.PORT || 8080;
 
 const app = express();
@@ -15,11 +17,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-// app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(publicPath));
 
 app.get('/*', (req, res) => {
-  // res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  res.send(`server connected at ${port}`);
+  res.sendFile(path.join(publicPath, 'index.html'));
+  // res.send(`server connected at ${port}`);
+});
+
+app.use((req, res, next) => {
+  // res.setHeader('Access-Control-Allow-Origin', 'https://rocky-hamlet-62364.herokuapp.com/'); 
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,application/xml');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });
 
 app.post('/create-teacher-pdf', async (req, res, next) => {
