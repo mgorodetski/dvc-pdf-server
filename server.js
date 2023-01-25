@@ -4,7 +4,7 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 
-const publicPath = path.join(__dirname, './pdf-storage/build');
+const publicPath = path.join(__dirname, './build');
 
 const port = process.env.PORT || 8080;
 
