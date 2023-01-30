@@ -17,16 +17,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-// app.use(express.static(publicPath));
-
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(publicPath, 'index.html'));
-// });
 
 app.use((req, res, next) => {
-  // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5555');
-  res.setHeader('Access-Control-Allow-Origin', 'https://heroic-otter-9164ca.netlify.app'); 
-  // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'https://dvc2023.netlify.app'); 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,application/xml');
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -66,8 +59,7 @@ async function createTeacherPDF(name) {
   const page = await browser.newPage();
   console.log(queryString);
 
-  await page.goto("https://heroic-otter-9164ca.netlify.app/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
-  // await page.goto("http://localhost:3000/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
+  await page.goto("https://dvc2023.netlify.app/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
 
   const pdf = await page.pdf({ printBackground: true, pageRanges: '1' });
   await browser.close();
@@ -83,8 +75,8 @@ async function createKlassPdf(years, city, school, klass) {
   const queryString = queryParams.join('&');
   const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
-  // await page.goto("http://localhost:3000/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
-  await page.goto("https://heroic-otter-9164ca.netlify.app/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
+
+  await page.goto("https://dvc2023.netlify.app/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
   await page.addStyleTag({ path: './landscape.css' });
   const pdf = await page.pdf({ printBackground: true, pageRanges: '1' });
   await browser.close();
