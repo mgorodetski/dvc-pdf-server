@@ -64,8 +64,8 @@ async function createTeacherPDF(name) {
   const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
   console.log(queryString);
-  // await page.goto("https://dvc2023.netlify.app/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
-  await page.goto('https://dvc-server.herokuapp.com/create-klass-pdf/teacher-pdf?' + queryString, { waitUntil: 'networkidle2' });
+  await page.goto("https://dvc2023.netlify.app/teacher-pdf?" + queryString, { waitUntil: 'networkidle2' });
+  // await page.goto('https://dvc-server.herokuapp.com/create-klass-pdf/teacher-pdf?' + queryString, { waitUntil: 'networkidle2' });
 
   const pdf = await page.pdf({ printBackground: true, pageRanges: '1' });
   await browser.close();
@@ -84,9 +84,9 @@ async function createKlassPdf(years, city, school, klass) {
   
   const browser = await puppeteer.launch({args: ['--no-sandbox']});
   const page = await browser.newPage();
-  // await page.goto("https://dvc2023.netlify.app/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
+  await page.goto("https://dvc2023.netlify.app/klass-pdf?" + queryString, { waitUntil: 'networkidle2' });
 
-  await page.goto('https://dvc-server.herokuapp.com/create-klass-pdf/klass-pdf?' + queryString, { waitUntil: 'networkidle2' });
+  // await page.goto('https://dvc-server.herokuapp.com/create-klass-pdf/klass-pdf?' + queryString, { waitUntil: 'networkidle2' });
   await page.addStyleTag({ path: './landscape.css' });
   const pdf = await page.pdf({ printBackground: true, pageRanges: '1' });
   await browser.close();
